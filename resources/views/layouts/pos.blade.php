@@ -17,6 +17,8 @@
 <body class="bg-slate-100 font-body">
     {{ $slot }}
 
+    <!-- Alpine.js for transitions -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireScripts
 </body>
 </html>

@@ -30,7 +30,7 @@
         <!-- Add Button -->
         <button
             wire:click="openModal()"
-            class="inline-flex items-center gap-2 px-4 py-2.5 bg-navy hover:bg-navy-800 text-white text-sm font-semibold rounded-lg transition-all"
+            class="inline-flex items-center gap-2 px-4 py-2.5 bg-navy hover:bg-navy-800 text-white text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
         >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
@@ -41,11 +41,42 @@
 
     <!-- Flash Messages -->
     @if(session('success'))
-        <div class="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg flex items-center gap-3">
+        <div
+            x-data="{ show: true }"
+            x-show="show"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-4"
+            x-init="setTimeout(() => show = false, 3000)"
+            class="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg flex items-center gap-3"
+        >
             <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span class="text-sm text-success">{{ session('success') }}</span>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div
+            x-data="{ show: true }"
+            x-show="show"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-4"
+            x-init="setTimeout(() => show = false, 4000)"
+            class="mb-6 p-4 bg-error/10 border border-error/20 rounded-lg flex items-center gap-3"
+        >
+            <svg class="w-5 h-5 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="text-sm text-error">{{ session('error') }}</span>
         </div>
     @endif
 
@@ -97,12 +128,12 @@
                         </td>
                         <td class="px-6 py-4 text-center">
                             <div class="inline-flex items-center gap-2">
-                                <button wire:click="openModal({{ $product->id }})" class="p-2 hover:bg-slate-100 rounded-lg transition-colors">
+                                <button wire:click="openModal({{ $product->id }})" class="p-2 hover:bg-slate-100 rounded-lg transition-all duration-150 hover:scale-105 active:scale-95">
                                     <svg class="w-4 h-4 text-slate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                     </svg>
                                 </button>
-                                <button wire:click="delete({{ $product->id }})" wire:confirm="Yakin hapus produk ini?" class="p-2 hover:bg-error/10 rounded-lg transition-colors">
+                                <button wire:click="delete({{ $product->id }})" wire:confirm="Yakin hapus produk ini?" class="p-2 hover:bg-error/10 rounded-lg transition-all duration-150 hover:scale-105 active:scale-95">
                                     <svg class="w-4 h-4 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                     </svg>
@@ -133,9 +164,30 @@
 
     <!-- Modal -->
     @if($showModal)
-        <div class="fixed inset-0 z-50 flex items-center justify-center p-4" wire:click="closeModal" wire:click.self="closeModal">
+        <div
+            x-show="$wire.showModal"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 z-50 flex items-center justify-center p-4"
+            wire:click="closeModal"
+            wire:click.self="closeModal"
+        >
             <div class="fixed inset-0 bg-navy/50 backdrop-blur-sm"></div>
-            <div class="relative bg-white rounded-xl shadow-lg w-full max-w-md p-6 max-h-[90vh] overflow-y-auto" wire:click.stop>
+            <div
+                x-show="$wire.showModal"
+                x-transition:enter="transition ease-out duration-250"
+                x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-95"
+                class="relative bg-white rounded-xl shadow-lg w-full max-w-md p-6 max-h-[90vh] overflow-y-auto"
+                wire:click.stop
+            >
                 <h3 class="text-lg font-bold text-navy mb-6">
                     {{ $editingId ? 'Edit Produk' : 'Tambah Produk' }}
                 </h3>
@@ -218,9 +270,12 @@
                         <button type="button" wire:click="closeModal" class="flex-1 h-11 border border-slate-200 text-slate font-medium rounded-lg hover:bg-slate-50 transition-all">
                             Batal
                         </button>
-                        <button type="submit" wire:loading.attr="disabled" class="flex-1 h-11 bg-navy hover:bg-navy-800 text-white font-semibold rounded-lg transition-all disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        <button type="submit" wire:loading.attr="disabled" class="flex-1 h-11 bg-navy hover:bg-navy-800 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                             <span wire:loading.remove wire:target="save">Simpan</span>
-                            <span wire:loading wire:target="save">Menyimpan...</span>
+                            <span wire:loading wire:target="save" class="flex items-center gap-2">
+                                <span class="spinner"></span>
+                                Menyimpan...
+                            </span>
                         </button>
                     </div>
                 </form>

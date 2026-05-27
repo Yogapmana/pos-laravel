@@ -6,6 +6,163 @@
 @source '../**/*.js';
 @source "../../app/Livewire";
 
+/* ============================================
+   ANIMATION & INTERACTION ENHANCEMENTS
+   ============================================ */
+
+/* Keyframes */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-once {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.97); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slide-out-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+@keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scale-out {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Animation Utilities */
+.animate-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.animate-pulse-once {
+    animation: pulse-once 200ms ease-out;
+}
+
+.animate-fade-in {
+    animation: fade-in 200ms ease-out forwards;
+}
+
+.animate-slide-in-right {
+    animation: slide-in-right 300ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.animate-scale-in {
+    animation: scale-in 250ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Spinner */
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 600ms linear infinite;
+}
+
+/* Button Press Effect */
+.btn-press:active {
+    transform: scale(0.97);
+    transition: transform 100ms;
+}
+
+/* Button Hover Lift */
+.btn-lift {
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+.btn-lift:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Interactive States */
+.interactive {
+    transition: all 200ms ease-out;
+}
+.interactive:hover {
+    transform: translateY(-1px);
+}
+.interactive:active {
+    transform: scale(0.98);
+}
+
+/* Product Card Add Animation */
+.product-card-add {
+    animation: pulse-once 200ms ease-out;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 50;
+}
+
+/* Panel Drawer */
+.panel-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 450px;
+    max-width: 100%;
+    background: white;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+    z-index: 50;
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 12px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 200;
+    animation: scale-in 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 @theme {
     --font-sans:
         "Instrument Sans", ui-sans-serif, system-ui, sans-serif,

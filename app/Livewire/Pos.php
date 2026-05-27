@@ -11,6 +11,7 @@ use App\Models\Transaction;
 use App\Services\MidtransService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 /**
@@ -593,7 +594,8 @@ class Pos extends Component
      *
      * @return Collection<int, Product>
      */
-    public function getProductsProperty()
+    #[Computed]
+    public function products()
     {
         return Product::with('category')
             ->when($this->selectedCategoryId, fn($q) => $q->where('category_id', $this->selectedCategoryId))

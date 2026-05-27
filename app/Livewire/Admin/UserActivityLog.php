@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\ActivityLog;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 /**
@@ -27,7 +28,8 @@ class UserActivityLog extends Component
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getLogsProperty()
+    #[Computed]
+    public function logs()
     {
         return ActivityLog::with('user')
             ->when($this->search, fn($q) => $q->where('description', 'like', '%' . $this->search . '%'))

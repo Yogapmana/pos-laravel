@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 /**
@@ -34,7 +35,8 @@ class Orders extends Component
      *
      * @return Collection<int, Order>
      */
-    public function getOrdersProperty()
+    #[Computed]
+    public function orders()
     {
         return Order::with(['table', 'cashier', 'items.product'])
             ->when($this->search, fn($q) => $q->where('order_number', 'like', '%' . $this->search . '%'))

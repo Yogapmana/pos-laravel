@@ -35,57 +35,57 @@
             </div>
 
             <!-- Navigation -->
-            <nav class="flex-1 p-4 space-y-1">
-                <a href="/admin/dashboard" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all @if(request()->routeIs('admin.dashboard')) bg-white/10 text-white @endif">
+            <nav class="flex-1 p-4 space-y-1" x-data="{ active: window.location.pathname }">
+                <a href="/admin/dashboard" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-[1.02] @if(request()->routeIs('admin.dashboard')) bg-white/10 text-white scale-105 @endif">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                     </svg>
                     <span class="text-sm font-medium">Dashboard</span>
                 </a>
 
-                <a href="/admin/products" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all @if(request()->routeIs('admin.products')) bg-white/10 text-white @endif">
+                <a href="/admin/products" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-[1.02] @if(request()->routeIs('admin.products')) bg-white/10 text-white scale-105 @endif">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                     </svg>
                     <span class="text-sm font-medium">Produk</span>
                 </a>
 
-                <a href="/admin/categories" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all @if(request()->routeIs('admin.categories')) bg-white/10 text-white @endif">
+                <a href="/admin/categories" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-[1.02] @if(request()->routeIs('admin.categories')) bg-white/10 text-white scale-105 @endif">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"></path>
                     </svg>
                     <span class="text-sm font-medium">Kategori</span>
                 </a>
 
-                <a href="/admin/tables" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all @if(request()->routeIs('admin.tables')) bg-white/10 text-white @endif">
+                <a href="/admin/tables" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-[1.02] @if(request()->routeIs('admin.tables')) bg-white/10 text-white scale-105 @endif">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
                     <span class="text-sm font-medium">Meja</span>
                 </a>
 
-                <a href="/admin/users" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all @if(request()->routeIs('admin.users')) bg-white/10 text-white @endif">
+                <a href="/admin/users" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-[1.02] @if(request()->routeIs('admin.users')) bg-white/10 text-white scale-105 @endif">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
                     <span class="text-sm font-medium">Pengguna</span>
                 </a>
 
-                <a href="/admin/orders" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all @if(request()->routeIs('admin.orders')) bg-white/10 text-white @endif">
+                <a href="/admin/orders" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-[1.02] @if(request()->routeIs('admin.orders')) bg-white/10 text-white scale-105 @endif">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
                     </svg>
                     <span class="text-sm font-medium">Order</span>
                 </a>
 
-                <a href="/admin/reports" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all @if(request()->routeIs('admin.reports')) bg-white/10 text-white @endif">
+                <a href="/admin/reports" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-[1.02] @if(request()->routeIs('admin.reports')) bg-white/10 text-white scale-105 @endif">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
                     <span class="text-sm font-medium">Laporan</span>
                 </a>
 
-                <a href="/admin/activity-log" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all @if(request()->routeIs('admin.activity-log')) bg-white/10 text-white @endif">
+                <a href="/admin/activity-log" class="flex items-center gap-3 px-4 py-3 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-[1.02] @if(request()->routeIs('admin.activity-log')) bg-white/10 text-white scale-105 @endif">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
@@ -141,12 +141,16 @@
 
             <!-- Page Content -->
             <div class="p-8">
-                {{ $slot }}
+                <div class="animate-fade-in">
+                    {{ $slot }}
+                </div>
             </div>
         </main>
     </div>
 
     @yield('scripts')
+    <!-- Alpine.js for transitions -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireScripts
 </body>
 </html>
