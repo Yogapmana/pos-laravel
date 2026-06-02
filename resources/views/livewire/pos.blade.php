@@ -140,7 +140,7 @@
             <!-- Products Grid -->
             <div class="flex-1 overflow-y-auto p-5 bg-cream">
                 @if($products and count($products) > 0)
-                    <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
                         @foreach($products as $product)
                             <div
                                 wire:click="addToCart({{ $product->id }})"
@@ -149,7 +149,7 @@
                                 class="group bg-warm-white rounded-2xl border-2 border-sand overflow-hidden cursor-pointer hover:shadow-xl hover:border-terracotta/40 transition-all duration-300 @if($product->stock <= 0) opacity-50 pointer-events-none @endif animate-fade-in"
                             >
                                 <!-- Product Image -->
-                                <div class="relative aspect-[4/3] bg-linen overflow-hidden">
+                                <div class="relative aspect-[3/2] bg-linen overflow-hidden">
                                     @if($product->image)
                                         <img
                                             src="{{ asset('storage/' . $product->image) }}"
@@ -165,25 +165,25 @@
                                     @endif
                                     <!-- Stock Badge -->
                                     @if($product->stock <= 5 && $product->stock > 0)
-                                        <span class="absolute top-2.5 right-2.5 px-2.5 py-1 bg-warning text-dark-roast text-xs font-bold rounded-full shadow-sm">Sisa {{ $product->stock }}</span>
+                                        <span class="absolute top-1.5 right-1.5 px-2 py-0.5 bg-warning text-dark-roast text-[10px] font-bold rounded-full shadow-sm">Sisa {{ $product->stock }}</span>
                                     @elseif($product->stock <= 0)
                                         <div class="absolute inset-0 bg-dark-roast/50 flex items-center justify-center">
-                                            <span class="px-3 py-1.5 bg-error text-warm-white text-sm font-bold rounded-full">Habis</span>
+                                            <span class="px-2 py-1 bg-error text-warm-white text-xs font-bold rounded-full">Habis</span>
                                         </div>
                                     @endif
                                     <!-- Category Badge -->
-                                    <span class="absolute top-2.5 left-2.5 px-2.5 py-1 bg-warm-white/95 backdrop-blur-sm text-dark-roast text-xs font-semibold rounded-full shadow-sm">
+                                    <span class="absolute top-1.5 left-1.5 px-2 py-0.5 bg-warm-white/95 backdrop-blur-sm text-dark-roast text-[10px] font-semibold rounded-full shadow-sm">
                                         {{ $product->category->name ?? '-' }}
                                     </span>
                                 </div>
                                 <!-- Product Info -->
-                                <div class="p-4">
-                                    <h3 class="font-semibold text-dark-roast text-base leading-tight line-clamp-1">{{ $product->name }}</h3>
-                                    <div class="flex items-center justify-between mt-2.5">
-                                        <p class="text-dark-roast font-bold text-base">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                                <div class="p-2.5">
+                                    <h3 class="font-semibold text-dark-roast text-sm leading-tight line-clamp-1">{{ $product->name }}</h3>
+                                    <div class="flex items-center justify-between mt-1.5">
+                                        <p class="text-dark-roast font-bold text-sm">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                                         @if($product->stock > 0)
-                                            <div class="w-9 h-9 bg-terracotta rounded-xl flex items-center justify-center group-hover:bg-olive transition-colors duration-300 shadow-sm group-hover:shadow-md">
-                                                <svg class="w-5 h-5 text-warm-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div class="w-7 h-7 bg-terracotta rounded-lg flex items-center justify-center group-hover:bg-olive transition-colors duration-300 shadow-sm group-hover:shadow-md">
+                                                <svg class="w-4 h-4 text-warm-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path>
                                                 </svg>
                                             </div>
