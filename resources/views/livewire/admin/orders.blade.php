@@ -13,6 +13,11 @@
                     placeholder="Cari order number..."
                     class="h-10 px-4 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-2 focus:border-navy"
                 >
+                <input
+                    type="date"
+                    wire:model.live="filterDate"
+                    class="h-10 px-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-2 focus:border-navy text-slate-600"
+                >
                 <select
                     wire:model.live="statusFilter"
                     class="h-10 px-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-2 focus:border-navy"
@@ -85,6 +90,12 @@
                 @endforelse
             </tbody>
         </table>
+        
+        @if($orders->hasPages())
+            <div class="px-6 py-4 border-t border-slate-200 bg-white">
+                {{ $orders->links() }}
+            </div>
+        @endif
     </div>
 
     <!-- Order Detail Modal -->

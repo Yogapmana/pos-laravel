@@ -13,6 +13,11 @@
                     placeholder="Cari aktivitas..."
                     class="h-10 px-4 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-2 focus:border-navy"
                 >
+                <input
+                    type="date"
+                    wire:model.live="filterDate"
+                    class="h-10 px-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-2 focus:border-navy text-slate-600"
+                >
                 <select
                     wire:model.live="filterAction"
                     class="h-10 px-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-2 focus:border-navy"
@@ -70,5 +75,11 @@
                 @endforelse
             </tbody>
         </table>
+
+        @if($logs->hasPages())
+            <div class="px-6 py-4 border-t border-slate-200 bg-white">
+                {{ $logs->links() }}
+            </div>
+        @endif
     </div>
 </div>

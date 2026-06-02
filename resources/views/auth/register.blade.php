@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Dapur Bunda Bahagia</title>
+    <title>Daftar Akun - Dapur Bunda Bahagia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,16 +16,16 @@
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-espresso rounded-2xl mb-4 shadow-soft">
                 <svg class="w-8 h-8 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                 </svg>
             </div>
-            <h1 class="text-3xl font-bold text-dark-roast">Dapur Bunda Bahagia</h1>
+            <h1 class="text-3xl font-bold text-dark-roast">Daftar Akun Baru</h1>
             <p class="text-warm-gray mt-2 font-sans">Sistem Informasi Restoran</p>
         </div>
 
-        <!-- Login Card -->
+        <!-- Register Card -->
         <div class="bg-warm-white rounded-[var(--radius-xl)] shadow-medium p-8 border border-sand glass">
-            <h2 class="text-xl font-semibold text-espresso mb-6 font-sans">Masuk ke Akun Anda</h2>
+            <h2 class="text-xl font-semibold text-espresso mb-6 font-sans">Buat Akun Anda</h2>
 
             @if ($errors->any())
                 <div class="mb-6 p-4 bg-error/10 border border-error/20 rounded-[var(--radius-md)]">
@@ -38,8 +38,25 @@
                 </div>
             @endif
 
-            <form method="POST" action="/login" class="space-y-5">
+            <form method="POST" action="/register" class="space-y-5">
                 @csrf
+
+                <!-- Name Field -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-espresso mb-1.5">Nama Lengkap</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="{{ old('name') }}"
+                        required
+                        autofocus
+                        class="w-full h-12 px-4 border border-sand rounded-[var(--radius-md)] bg-white placeholder-stone text-dark-roast
+                               transition-colors hover:border-terracotta-light focus:outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/20
+                               @error('name') border-error focus:border-error focus:ring-error/20 @enderror"
+                        placeholder="Budi Santoso"
+                    >
+                </div>
 
                 <!-- Email Field -->
                 <div>
@@ -50,11 +67,10 @@
                         name="email"
                         value="{{ old('email') }}"
                         required
-                        autofocus
                         class="w-full h-12 px-4 border border-sand rounded-[var(--radius-md)] bg-white placeholder-stone text-dark-roast
                                transition-colors hover:border-terracotta-light focus:outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/20
                                @error('email') border-error focus:border-error focus:ring-error/20 @enderror"
-                        placeholder="admin@dapur.com"
+                        placeholder="budi@dapur.com"
                     >
                 </div>
 
@@ -73,15 +89,18 @@
                     >
                 </div>
 
-                <!-- Remember Me -->
-                <div class="flex items-center">
+                <!-- Password Confirmation Field -->
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-medium text-espresso mb-1.5">Konfirmasi Kata Sandi</label>
                     <input
-                        type="checkbox"
-                        id="remember"
-                        name="remember"
-                        class="w-4 h-4 rounded border-sand text-terracotta focus:ring-terracotta/20 transition-colors"
+                        type="password"
+                        id="password_confirmation"
+                        name="password_confirmation"
+                        required
+                        class="w-full h-12 px-4 border border-sand rounded-[var(--radius-md)] bg-white placeholder-stone text-dark-roast
+                               transition-colors hover:border-terracotta-light focus:outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/20"
+                        placeholder="••••••••"
                     >
-                    <label for="remember" class="ml-3 text-sm text-warm-gray font-medium cursor-pointer">Ingat saya</label>
                 </div>
 
                 <!-- Submit Button -->
@@ -89,11 +108,18 @@
                     type="submit"
                     class="w-full h-12 bg-terracotta hover:bg-terracotta-dark text-white font-semibold rounded-[var(--radius-lg)] transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2 btn-press mt-2"
                 >
-                    <span>Masuk</span>
+                    <span>Daftar Akun</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                     </svg>
                 </button>
+
+                <p class="text-center text-sm text-warm-gray mt-4">
+                    Sudah memiliki akun? 
+                    <a href="{{ route('login') }}" class="text-terracotta hover:text-terracotta-dark font-medium underline decoration-terracotta/30 hover:decoration-terracotta underline-offset-4 transition-all">
+                        Masuk di sini
+                    </a>
+                </p>
             </form>
         </div>
 

@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\ActivityLog;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 /**
  * UserActivityLog Component - User activity log viewer
@@ -17,16 +18,28 @@ use Livewire\Component;
  */
 class UserActivityLog extends Component
 {
+    use WithPagination;
+
     /** @var string */
     public $search = '';
 
     /** @var string */
     public $filterAction = '';
 
+    /** @var string */
+    public $filterDate = '';
+
+    /**
+     * Reset pagination when search or filters change
+     */
+    public function updatingSearch() { $this->resetPage(); }
+    public function updatingFilterAction() { $this->resetPage(); }
+    public function updatingFilterDate() { $this->resetPage(); }
+
     /**
      * Get filtered activity logs
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     #[Computed]
     public function logs()
@@ -34,9 +47,9 @@ class UserActivityLog extends Component
         return ActivityLog::with('user')
             ->when($this->search, fn($q) => $q->where('description', 'like', '%' . $this->search . '%'))
             ->when($this->filterAction, fn($q) => $q->where('action', $this->filterAction))
+            ->when($this->filterDate, fn($q) => $q->whereDate('created_at', $this->filterDate))
             ->orderBy('created_at', 'desc')
-            ->limit(100)
-            ->get();
+            ->paginate(20);
     }
 
     /**

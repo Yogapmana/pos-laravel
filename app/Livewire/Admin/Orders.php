@@ -3,9 +3,9 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Order;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 /**
  * Orders Component - Order management with void functionality
@@ -18,11 +18,16 @@ use Livewire\Component;
  */
 class Orders extends Component
 {
+    use WithPagination;
+
     /** @var string */
     public $search = '';
 
     /** @var string */
     public $statusFilter = '';
+
+    /** @var string */
+    public $filterDate = '';
 
     /** @var bool */
     public $showDetailModal = false;
@@ -31,9 +36,16 @@ class Orders extends Component
     public $selectedOrder = null;
 
     /**
+     * Reset pagination when search or filters change
+     */
+    public function updatingSearch() { $this->resetPage(); }
+    public function updatingStatusFilter() { $this->resetPage(); }
+    public function updatingFilterDate() { $this->resetPage(); }
+
+    /**
      * Get filtered orders
      *
-     * @return Collection<int, Order>
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     #[Computed]
     public function orders()
@@ -41,9 +53,9 @@ class Orders extends Component
         return Order::with(['table', 'cashier', 'items.product'])
             ->when($this->search, fn($q) => $q->where('order_number', 'like', '%' . $this->search . '%'))
             ->when($this->statusFilter, fn($q) => $q->where('status', $this->statusFilter))
+            ->when($this->filterDate, fn($q) => $q->whereDate('created_at', $this->filterDate))
             ->orderBy('created_at', 'desc')
-            ->limit(50)
-            ->get();
+            ->paginate(15);
     }
 
     /**
